@@ -35,6 +35,7 @@ def add_familiar(request):
     return HttpResponse(documento)
 
 
+
 def add_amigo(request):
     a_1 = Amigo(nombre="Emiliano", telefono="3541000000",
                     email="emiliano@gmail.com",
@@ -59,5 +60,33 @@ def add_amigo(request):
     plantilla = loader.get_template("amigos.html")
 
     documento = plantilla.render(dict_amigos)
+
+    return HttpResponse(documento)
+
+
+
+def mostrar_familiares(request):
+
+    lista_familia = Familiar.objects.all()
+
+    diccionario = {"lista_familia" : lista_familia}
+
+    plantilla = loader.get_template("muestra_familia.html")
+
+    documento = plantilla.render(diccionario)
+
+    return HttpResponse(documento)
+
+
+
+def mostrar_amigos(request):
+
+    lista_amigos = Amigo.objects.all()
+
+    diccionario = {"lista_amigos" : lista_amigos}
+
+    plantilla = loader.get_template("muestra_amigos.html")
+
+    documento = plantilla.render(diccionario)
 
     return HttpResponse(documento)
